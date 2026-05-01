@@ -59,13 +59,23 @@ The full pipeline — corpus access, text normalisation, feature engineering, su
 ## Repository Structure
 
 ```
-├── main.py                      # Full runnable pipeline
-├── report.pdf                   # Final report (10 pages)
-├── report.tex                   # LaTeX source
-├── PROJECT_DOCUMENTATION.md     # Technical documentation
-├── frequency_distribution.png   # Top-30 word frequencies (Figure 1)
-├── category_frequencies.png     # Top-20 words per category (Figure 2)
-└── README.md                    # This file
+├── src/
+│   └── main.py                      # Full runnable pipeline
+├── report/
+│   ├── report.pdf                   # Final report (10 pages)
+│   ├── report.tex                   # LaTeX source
+│   └── PROJECT_DOCUMENTATION.md    # Technical documentation
+├── figures/
+│   ├── frequency_distribution.png  # Top-30 word frequencies (Figure 1)
+│   └── category_frequencies.png    # Top-20 words per category (Figure 2)
+├── chapters/
+│   ├── ch01.html                   # NLTK Book — Ch1: Language Processing & Python
+│   ├── ch02.html                   # NLTK Book — Ch2: Text Corpora & Lexical Resources
+│   ├── ch03.html                   # NLTK Book — Ch3: Processing Raw Text
+│   ├── ch05.html                   # NLTK Book — Ch5: Categorizing & Tagging Words
+│   ├── ch06.html                   # NLTK Book — Ch6: Learning to Classify Text
+│   └── ch08.html                   # NLTK Book — Ch8: Analyzing Sentence Structure
+└── README.md
 ```
 
 ---
@@ -74,7 +84,7 @@ The full pipeline — corpus access, text normalisation, feature engineering, su
 
 ```bash
 pip install nltk matplotlib
-python3 main.py
+python3 src/main.py
 ```
 
 NLTK data (corpus, stopwords, POS tagger) is downloaded automatically on first run.

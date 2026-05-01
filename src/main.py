@@ -15,6 +15,7 @@ Components used:
   - nltk.ConfusionMatrix           (Ch05/06) error analysis
 """
 
+import os
 import random
 import nltk
 import matplotlib.pyplot as plt
@@ -184,9 +185,10 @@ def plot_frequency_distribution(documents, top_n=30):
     )
     all_words.plot(top_n, title=f"Top {top_n} Word Frequencies (after preprocessing)")
     plt.tight_layout()
-    plt.savefig("frequency_distribution.png", dpi=150)
+    out = os.path.join(os.path.dirname(__file__), "..", "figures", "frequency_distribution.png")
+    plt.savefig(out, dpi=150)
     plt.close()
-    print(f"\n  Frequency plot saved → frequency_distribution.png")
+    print(f"\n  Frequency plot saved → figures/frequency_distribution.png")
 
 
 def plot_category_word_frequencies(documents, top_n=20):
@@ -204,9 +206,10 @@ def plot_category_word_frequencies(documents, top_n=20):
         ax.set_title(f"Top {top_n} words — {cat.upper()}")
         ax.set_xlabel("Frequency")
     plt.tight_layout()
-    plt.savefig("category_frequencies.png", dpi=150)
+    out = os.path.join(os.path.dirname(__file__), "..", "figures", "category_frequencies.png")
+    plt.savefig(out, dpi=150)
     plt.close()
-    print("  Category frequency plot saved → category_frequencies.png")
+    print("  Category frequency plot saved → figures/category_frequencies.png")
 
 
 # ---------------------------------------------------------------------------
