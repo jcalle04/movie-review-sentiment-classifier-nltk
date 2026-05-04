@@ -24,10 +24,7 @@ from nltk.stem import PorterStemmer
 from nltk.classify import accuracy, apply_features
 from nltk import FreqDist, NaiveBayesClassifier, DecisionTreeClassifier, pos_tag
 
-# ---------------------------------------------------------------------------
 # 0. Download required NLTK data (safe to call repeatedly)
-# ---------------------------------------------------------------------------
-
 def download_nltk_data():
     resources = [
         "movie_reviews",
@@ -41,10 +38,7 @@ def download_nltk_data():
         nltk.download(r, quiet=True)
 
 
-# ---------------------------------------------------------------------------
 # 1. Data loading  (Ch02 — corpus access)
-# ---------------------------------------------------------------------------
-
 def load_documents():
     """Return a shuffled list of (word_list, category) tuples."""
     documents = [
@@ -57,10 +51,7 @@ def load_documents():
     return documents
 
 
-# ---------------------------------------------------------------------------
 # 2. Preprocessing  (Ch02 stopwords + Ch03 tokenization & stemming)
-# ---------------------------------------------------------------------------
-
 def preprocess(word_list):
     """Lowercase, remove stopwords and non-alphabetic tokens, then stem."""
     stop_words = set(stopwords.words("english"))
@@ -72,10 +63,7 @@ def preprocess(word_list):
     ]
 
 
-# ---------------------------------------------------------------------------
 # 3. Vocabulary selection  (Ch02 — FreqDist)
-# ---------------------------------------------------------------------------
-
 def build_vocabulary(documents, top_n=2000):
     """Use FreqDist to select the top-N most frequent words across all docs."""
     all_words = FreqDist(
@@ -86,10 +74,7 @@ def build_vocabulary(documents, top_n=2000):
     return [w for (w, _) in all_words.most_common(top_n)]
 
 
-# ---------------------------------------------------------------------------
 # 4. Feature extraction  (Ch06 — bag-of-words features)
-# ---------------------------------------------------------------------------
-
 def bow_features(word_list, vocabulary):
     """Boolean bag-of-words: True if word appears in document."""
     doc_set = set(preprocess(word_list))
@@ -109,10 +94,7 @@ def pos_features(word_list, vocabulary):
     return base
 
 
-# ---------------------------------------------------------------------------
 # 5. Train / test split and classifier training  (Ch06)
-# ---------------------------------------------------------------------------
-
 def build_and_evaluate(documents, vocabulary, feature_fn, label):
     """Train NaiveBayes + DecisionTree and print evaluation results."""
     featuresets = [(feature_fn(words, vocabulary), cat) for (words, cat) in documents]
@@ -172,10 +154,7 @@ def print_precision_recall_f1(gold, predicted):
         print(f"  {cls:<8} {precision:>10.4f} {recall:>10.4f} {f1:>10.4f}")
 
 
-# ---------------------------------------------------------------------------
 # 6. Visualisations  (Ch02 — FreqDist.plot)
-# ---------------------------------------------------------------------------
-
 def plot_frequency_distribution(documents, top_n=30):
     """Plot the top-N most frequent words across all reviews."""
     all_words = FreqDist(
@@ -212,10 +191,7 @@ def plot_category_word_frequencies(documents, top_n=20):
     print("  Category frequency plot saved → figures/category_frequencies.png")
 
 
-# ---------------------------------------------------------------------------
 # 7. Main entry point
-# ---------------------------------------------------------------------------
-
 def main():
     print("Downloading NLTK resources...")
     download_nltk_data()
